@@ -1,0 +1,54 @@
+
+<div id="paginaHome" class="container">
+
+
+
+
+<h2>Centro de adopción</h2>
+	  <div id="menuBotones"  class="row">
+	  
+		  <div [routerLink]="['/dogs/add']" class="col-xs-6 bg-success">
+		     <img src="../assets/images/iconDog.png">
+             <h5 class="font-weight-bold">Agregar Perros</h5>
+		  </div>
+		   <div [routerLink]="['/construyendo']" data-toggle="modal" data-target="#enConstruccionModal"
+class="col-xs-6 bg-info">
+		   <img src="../assets/images/iconCat1.png">
+		     <h5 class="font-weight-bold">Agregar Gatos</h5>
+		  </div>
+		</div>
+
+
+  <nav id = "paginacionPagina" aria-label="Paginacion">
+    <ul class="pagination  pagination-lg">
+      <li class="page-item">
+        <a class="page-link" (click)="navegarPag('p')" tabindex="-1"><i class="fa fa-chevron-circle-left"></i></a>
+      </li>
+      <li *ngFor="let num of totalNPaginasMostradas" class="page-item" [ngClass]="{'active': num == this.paginaActiva}"><a class="page-link" (click)="paginador(num)">{{num}}</a></li>
+      <li class="page-item">
+        <a class="page-link" (click)="navegarPag('n')"><i class="fa fa-chevron-circle-right"></i></a>
+      </li>
+    </ul>
+  </nav>
+
+
+<div id="mascota-home" class="container">
+    <div class="loading">
+        <img src="../../assets/images/loader.gif" />
+    </div>
+
+<div class="row">
+  <div *ngFor="let pet of pets2" class="col-xs-12 col-md-4 pet-item" [routerLink]="['/pet',  pet.type, pet.id ]">
+
+    <div class="cajaPet1">
+        <img class="imagenPet" src="https://apipethouse.000webhostapp.com/uploads/{{pet.imagen}}" *ngIf="pet.imagen && pet.imagen !== 'null'" />
+    </div>
+      <div class="Descripcion-pet"><h2>{{pet.nombre}}</h2>
+            <p>Click para Ver</p>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+
+  </div>

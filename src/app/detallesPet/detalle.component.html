@@ -1,0 +1,38 @@
+<div *ngIf="dog" class="Detalle-pet">
+	<img class="imagen-pet-detail" src="https://apipethouse.000webhostapp.com/uploads/{{dog.imagen}}" *ngIf="dog.imagen && dog.imagen !== 'null'" />
+  <div class="data-pet">
+		<h3><i class="fa fa-paw" ></i> {{dog.nombre}}  ( {{dog.edad}} años )</h3>
+	
+		<h4>{{dog.raza}}</h4>
+		<p class="font-weight-bold" >{{dog.descripcion}}</p>
+        
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">Contactar al dueño para Adoptar</button>
+    
+  </div>
+   
+   <div id="botones-detalle">
+    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#ModalConfirmar"><i class="fa fa-trash"></i>  Eliminar</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalUpdatePet"><i class="fa fa-refresh"></i>  Modificar</button>
+   </div>
+	
+  <div class="modal fade" id="ModalConfirmar" tabindex="-1" role="dialog" aria-labelledby="Eliminar" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        
+        <h4>¿Seguro que deseas eliminar esta mascota?</h4>
+       <div>
+        <button type="button" (click)="onBorrarMascota(dog.id)" class="btn btn-success" data-dismiss="modal">Eliminar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+     </div>
+    </div>
+  </div>
+ </div>
+
+
+	<div class="modal fade" id="ModalUpdatePet" tabindex="-1" role="dialog" aria-labelledby="Modificar Mascota" aria-hidden="true">
+		  <editDog [dogid]="dog.id" [dognombre]="dog.nombre" [dogedad]="dog.edad" [dograza]="dog.raza" [dogdescripcion]="dog.descripcion" [dogimagen]="dog.imagen" ></editDog>
+	</div>
+
+	
+</div>

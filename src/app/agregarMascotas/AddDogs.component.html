@@ -1,0 +1,52 @@
+<div class="AgregarMascotas">
+	    	<h2>{{titulo}}</h2>
+	
+<form #formDog="ngForm" (ngSubmit)="onSubmit()">
+
+  <div class="container">
+	  
+	  <div class="form-group row">
+		<label class="col-xs-12 col-form-label font-weight-bold" for="nombre">Nombre:</label>
+			<input class="col-xs-12 form-control"  type="text" #nombre="ngModel" name="nombre" [(ngModel)]="Dog.nombre" required/>
+			<span *ngIf="!nombre.valid">El nombre es obligatorio</span>
+	  </div>
+     <div class="form-group row">
+		<label class="col-xs-12 col-form-label font-weight-bold" for="edad">Edad:</label>
+			<input class="col-xs-12 form-control" type="text" #edad="ngModel" name="edad" [(ngModel)]="Dog.edad" required/>
+			<span *ngIf="!edad.valid">La edad es obligatoria</span>
+	 </div>
+	
+	 <div class="form-group row">
+		<label class="col-xs-12 col-form-label font-weight-bold" for="raza">Raza:</label>
+			
+            <select class="col-xs-12 form-control" name="raza" [(ngModel)]="Dog.raza" #raza="ngModel" required> 
+             <option *ngFor="let race of races" value="{{race.descripcion}}">{{race.descripcion}}</option>
+            </select>
+            <span *ngIf="!raza.valid">La raza es obligatoria</span>
+		
+	 </div>
+	
+	 <div class="form-group row">
+		<label class="col-xs-12 col-form-label font-weight-bold" for="descripcion">Descripción:</label>
+			<textarea class="col-xs-12 form-control" #descripcion="ngModel" name="descripcion" [(ngModel)]="Dog.descripcion" required></textarea>
+			<span *ngIf="!descripcion.valid">La descripción es obligatoria</span>
+	 </div>
+     
+	 <div class="form-group row">
+		<label class="col-xs-12 col-form-label font-weight-bold" for="imagen"><i class="fa fa-file-image-o" aria-hidden="true"> </i> Imagen:</label>
+		<input class="col-xs-12 form-control-file" type="file" placeholder="Subir imagen..." [disabled]="!stat" (change)="fileChangeEvent($event)" />
+		<span *ngIf="!stat">La foto no se puede modificar</span>
+	 </div>
+
+   <div id="botonesAdd"> 
+	    <input *ngIf="stat" class="btn btn-primary" type="submit" value="Ingresar Mascota" [disabled]="!formDog.form.valid" />
+		<button *ngIf="!stat" class="btn btn-primary"  (click)="onChangePet()" data-dismiss="modal" [disabled]="!formDog.form.valid">Modificar Mascota</button>
+		
+		<a class="btn btn-secondary" *ngIf="stat" [routerLink]="['/home']">Cancelar</a>
+		<a class="btn btn-secondary" *ngIf="!stat" data-dismiss="modal">Cancelar</a>
+   </div>
+</div>
+
+</form>
+
+</div>
